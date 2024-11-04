@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All cars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<table class="table table-success table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Model</th>
+        <th scope="col">Series</th>
+        <th scope="col">Engine</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car: ${cars}">
+        <td th:text="${car.model}"/>
+        <td th:text="${car.series}"/>
+        <td th:text="${car.engine}"/>
+    </tr>
+    </tbody>
+
+</table>
+<th:block th:each="msg : ${messages}">
+    <h1 th:text="${msg}"></h1>
+</th:block>
+</body>
+</html>
