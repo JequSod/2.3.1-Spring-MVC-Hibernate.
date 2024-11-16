@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All cars</title>
+    <title>All USERS</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -11,23 +11,35 @@
 
 <table class="table table-success table-striped">
     <thead>
+    <br><br>
     <tr>
-        <th scope="col">Model</th>
-        <th scope="col">Series</th>
-        <th scope="col">Engine</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone number</th>
+        <th scope="col">Operations</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="car: ${cars}">
-        <td th:text="${car.model}"/>
-        <td th:text="${car.series}"/>
-        <td th:text="${car.engine}"/>
+    <tr th:each="user: ${AllUSE}">
+
+        <td th:text="${user.name}"/>
+        <td th:text="${user.lastName}"/>
+        <td th:text="${user.age}"/>
+        <td th:text="${user.phoneNumber}"/>
+        <td><a th:href="@{/updateUser?id={id}(id=${user.getId()})}" th:text="UPDATE"></a></td>
+        <td><a th:href="@{/deleteUser?id={id}(id=${user.getId()})}" th:text="DELETE"></a></td>
+
     </tr>
     </tbody>
 
 </table>
-<th:block th:each="msg : ${messages}">
-    <h1 th:text="${msg}"></h1>
-</th:block>
+
+<br>
+<input type="button" value="Add user"
+       onclick="window.location.href='save'"
+/>
+
+
 </body>
 </html>

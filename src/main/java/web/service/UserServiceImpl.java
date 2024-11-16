@@ -1,35 +1,41 @@
-//package web.service;
-//
-//import org.springframework.stereotype.Component;
-//import web.model.User;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Component
-//public class CarServiceImpl implements CarService {
-//    private List<User> cars;
-//
-//    {
-//        cars = new ArrayList<>();
-//
-//        cars.add(new User("jigyli", 1, "V2"));
-//        cars.add(new User("lada", 9, "V6"));
-//        cars.add(new User("niva", 12, "V5"));
-//        cars.add(new User("zaporojec", 6, "V12"));
-//        cars.add(new User("aurus", 5, "V3"));
-//    }
-//
-//    public List<User> show(int count) {
-//        List<User> newcar = new ArrayList<>();
-//        if (count >= cars.size()) {
-//            return cars;
-//        }
-//        for (int i = 0; i < count; i++) {
-//            newcar.add(cars.get(i));
-//        }
-//        return newcar;
-//    }
-//}
-//
-//
+package web.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import web.dao.UserDao;
+import web.model.User;
+
+import java.util.List;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Override
+    public List<User> getAllUser() {
+        return userDao.getAllUser();
+    }
+
+    @Transactional
+    @Override
+    public User getUser(long id) {
+        return userDao.getUser(id);
+    }
+
+    @Transactional
+    @Override
+    public void removeUser(long id) {
+        userDao.removeUser(id);
+    }
+
+    @Override
+    @Transactional
+    public void save(User user) {
+        userDao.save(user);
+    }
+}
+
+
